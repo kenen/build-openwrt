@@ -1,3 +1,4 @@
+
 #
 #
 # 感谢p3terx大神的一键编译脚本
@@ -85,7 +86,9 @@ jobs:
         SCKEY: ${{ secrets.SCKEY }}
         text: 主人${{ env.WXFB_MESSAGE }}编译开始啦
         desp: 主人您要编译的[${{ env.WXFB_MESSAGE }}]固件正在努力耕耘中,请耐心等待......
-    
+    - name: 电报机器人信息通知
+      run: |
+        curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=🎉 主人您要编译的[${{ env.WXFB_MESSAGE }}]固件正在努力耕耘中,请耐心等待...... 😋" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
     - name: 开始安装编译所需系统
       env:
         DEBIAN_FRONTEND: noninteractive
@@ -327,3 +330,16 @@ jobs:
               
               
               祝小主人见人爱，花见花开，车见车载，天天好心情🎈！！！
+- name: 电报机器人信息通知
+      run: |
+        curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=我亲爱的✨主人✨您要编译的[${{ env.WXFB_MESSAGE }}]固件顺利编译完成了！
+      
+          完成时间：${{ env.date1 }}
+      
+          发布地址：${{ env.GITHUB_RELEASE }}
+      
+          奶牛快传：${{ env.COWTRANSFER_URL }}
+      
+          WeTransfer：${{ env.WETRANSFER_URL }}
+      
+          祝小主人见人爱，💐花见花开，车见车载，天天好心情🎈！！！" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" 
