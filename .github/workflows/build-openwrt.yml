@@ -330,7 +330,7 @@ jobs:
               
               
               祝小主人见人爱，花见花开，车见车载，天天好心情🎈！！！
-- name: 电报机器人信息通知
+    - name: 电报机器人信息通知
       run: |
         curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=我亲爱的✨主人✨您要编译的[${{ env.WXFB_MESSAGE }}]固件顺利编译完成了！
       
@@ -342,4 +342,5 @@ jobs:
       
           WeTransfer：${{ env.WETRANSFER_URL }}
       
-          祝小主人见人爱，💐花见花开，车见车载，天天好心情🎈！！！" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage" 
+          祝小主人见人爱，💐花见花开，车见车载，天天好心情🎈！！！" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"     
+         
